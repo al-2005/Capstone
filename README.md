@@ -18,8 +18,10 @@ release, and Prometheus/Grafana provide operational visibility.
 ## Submission Evidence
 
 The following screenshots document real local runs. Minikube screenshots show a local Kubernetes
-deployment; they are not evidence of AWS/EKS. GitHub Actions, GHCR publication, AWS infrastructure,
-Argo CD, and the final presentation video are not evidenced here yet.
+deployment; they are not evidence of AWS/EKS. GitHub Actions and GHCR publication are verified by
+[workflow run #5](https://github.com/al-2005/Capstone/actions/runs/39022994976); screenshots of that
+run and the GHCR packages, AWS infrastructure, Argo CD, and the final presentation video remain
+pending.
 
 ### M1 — Application
 
@@ -105,8 +107,9 @@ Grafana dashboard:
 
 ### Remaining submission evidence
 
-- **M5/M6:** GitHub Actions test/build run, Trivy image scans, and GHCR package publication are
-  pending; do not claim these ran until verified in the repository.
+- **M5/M6:** GitHub Actions, Trivy scans, and GHCR publication are verified by
+  [workflow run #5](https://github.com/al-2005/Capstone/actions/runs/39022994976); submission
+  screenshots of the run, scans, and GHCR package page are still pending.
 - **M7:** Terraform plan and AWS VPC/EKS deployment are pending.
 - **M8 GitOps:** Argo CD sync/health evidence is pending. The completed Kubernetes evidence above
   is from local Minikube.
@@ -252,13 +255,17 @@ down -v` only when intentionally deleting the local database volume and demo dat
 The commit-SHA tag connects a published image back to its source revision. Argo CD performs
 deployment reconciliation from Git rather than having the build pipeline mutate the cluster.
 
-**Evidence to capture:** a real successful GitHub Actions run, job detail, and GHCR package page.
+Verified on 2026-10-17: [workflow run #5](https://github.com/al-2005/Capstone/actions/runs/39022994976)
+passed the tests, frontend build, image builds, Trivy scans, and GHCR publication for commit
+`c59ea4c`. Capture the successful run, job details, and GHCR package page for the submission.
 
 ## M6 — DevSecOps (Trivy)
 
 Trivy scans both built images for HIGH and CRITICAL vulnerabilities. The workflow fails the
-publish gate when a matching vulnerability is found. Container scanning is one layer of defense;
-it does not replace dependency review, secret scanning, secure configuration, or runtime controls.
+publish gate when a matching vulnerability is found. The latest successful run passed both image
+scans; earlier runs correctly blocked publishing when findings were present. Container scanning is
+one layer of defense; it does not replace dependency review, secret scanning, secure configuration,
+or runtime controls.
 
 **Evidence to capture:** Trivy output from the same workflow run as the published images. Report
 findings honestly; do not describe an unrun scan as clean.
