@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: helpdesk-broken-image
+  namespace: campus-helpdesk
+  labels:
+    app: helpdesk-broken-image
+spec:
+  containers:
+    - name: frontend
+      image: ghcr.io/CHANGE-ME/campus-helpdesk-frontend:not-a-real-tag
+      imagePullPolicy: Always
+      ports:
+        - containerPort: 8080

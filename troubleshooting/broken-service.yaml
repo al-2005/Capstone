@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helpdesk-service-lab
+  namespace: campus-helpdesk
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: helpdesk-service-lab
+  template:
+    metadata:
+      labels:
+        app: helpdesk-service-lab
+    spec:
+      containers:
+        - name: web
+          image: nginx:1.27-alpine
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: helpdesk-service-lab
+  namespace: campus-helpdesk
+spec:
+  selector:
+    app: helpdesk-service-mismatch
+  ports:
+    - port: 80
+      targetPort: 80

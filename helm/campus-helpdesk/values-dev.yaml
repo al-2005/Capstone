@@ -1,0 +1,14 @@
+replicaCount:
+  backend: 1
+  frontend: 1
+
+autoscaling:
+  enabled: false
+
+ingress:
+  enabled: true
+  className: nginx
+  host: helpdesk.local
+
+serviceMonitor:
+  enabled: false
