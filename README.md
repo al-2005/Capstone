@@ -15,6 +15,104 @@ release, and Prometheus/Grafana provide operational visibility.
 > Deployment evidence is added only after a real run. In particular, local Docker or kind output
 > is not presented as proof of AWS, GitHub Actions, GHCR, or Argo CD deployment.
 
+## Submission Evidence
+
+The following screenshots document real local runs. Minikube screenshots show a local Kubernetes
+deployment; they are not evidence of AWS/EKS. GitHub Actions, GHCR publication, AWS infrastructure,
+Argo CD, and the final presentation video are not evidenced here yet.
+
+### M1 — Application
+
+Campus Helpdesk running locally with sample tickets:
+
+![Campus Helpdesk dashboard](docs/screenshots/03-application.png)
+
+FastAPI API documentation:
+
+![FastAPI Swagger UI](docs/screenshots/04-api.png)
+
+### M2 — Testing
+
+Backend test run:
+
+![Pytest results](docs/screenshots/01-pytest.png)
+
+### M3 — Git and GitHub
+
+Local Git status/history evidence:
+
+![Local Git status and history](docs/screenshots/05-git.png)
+
+### M4 — Docker and frontend build
+
+Local Docker service status:
+
+![Docker Compose services](docs/screenshots/10-docker-running.png)
+
+Frontend production build and post-update npm audit:
+
+![Frontend build and dependency audit](docs/screenshots/06-fronted-build-after-fix.png)
+
+### M6 — Dependency security
+
+The initial npm audit reported Vite/esbuild vulnerabilities. Vite was updated to 6.4.4; the
+subsequent audit reported zero vulnerabilities. The screenshot above records the updated build and
+audit, while this capture records the earlier findings:
+
+![Initial npm audit findings](docs/screenshots/07-npm-audit-before-fix.png)
+
+### M8 — Local Kubernetes, Helm, and Ingress
+
+Minikube cluster readiness:
+
+![Minikube node ready](docs/screenshots/13-kubernetes-cluster-ready.png)
+
+Helm lint and rendered resources:
+
+![Helm chart lint](docs/screenshots/11-helm-lint.png)
+
+![Rendered Helm resources](docs/screenshots/12-helm-template.png)
+
+Local images, Ingress controller, and Helm release:
+
+![Images loaded into Minikube](docs/screenshots/14-minikube-images.png)
+
+![Minikube Ingress controller](docs/screenshots/15-minikube-ingress.png)
+
+![Campus Helpdesk Helm release](docs/screenshots/17-minikube-release.png)
+
+Services, Ingress, and release status:
+
+![Kubernetes Services and Ingress](docs/screenshots/18-kubernetes-services-ingress.png)
+
+Application reached through the local Ingress hostname:
+
+![Application through Minikube Ingress](docs/screenshots/22-ingress-app.png)
+
+### M9 — Local observability
+
+Prometheus-format application metrics:
+
+![Application metrics](docs/screenshots/14-metrics.png)
+
+Prometheus target health:
+
+![Prometheus target UP](docs/screenshots/15-prometheus-targets.png)
+
+Grafana dashboard:
+
+![Campus Helpdesk Grafana dashboard](docs/screenshots/16-grafana.png)
+
+### Remaining submission evidence
+
+- **M5/M6:** GitHub Actions test/build run, Trivy image scans, and GHCR package publication are
+  pending; do not claim these ran until verified in the repository.
+- **M7:** Terraform plan and AWS VPC/EKS deployment are pending.
+- **M8 GitOps:** Argo CD sync/health evidence is pending. The completed Kubernetes evidence above
+  is from local Minikube.
+- **M10:** The narrated presentation video is pending; see [`demo/RECORDING.md`](demo/RECORDING.md)
+  for the recording sequence.
+
 ---
 
 ## Architecture
