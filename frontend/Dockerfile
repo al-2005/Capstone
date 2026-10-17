@@ -7,9 +7,12 @@ COPY src ./src
 RUN npm run build
 
 FROM nginxinc/nginx-unprivileged:1.27-alpine
+USER root
+RUN apk upgrade --no-cache
 ENV BACKEND_UPSTREAM=backend:8000 \
     NGINX_ENVSUBST_FILTER=^BACKEND_UPSTREAM$
 COPY nginx.conf /etc/nginx/templates/default.conf.template
 COPY --from=build --chown=nginx:nginx /app/dist /usr/share/nginx/html
+USER nginx
 EXPOSE 8080
 CMD ["nginx", "-g", "daemon off;"]
